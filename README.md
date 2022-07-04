@@ -5,11 +5,11 @@ This project is the Ironhack Java Bootcamp mid-term project. It is about creatin
 
 Author: Paula Sánchez
 
-##Requirements##
+## Requirements 🖇️
 
 The system must have 4 types of accounts: StudentChecking, Checking, Savings, and CreditCard.
 
-**Checking
+**Checking**
 
 
 Checking Accounts should have:
@@ -24,7 +24,7 @@ A monthlyMaintenanceFee
 A creationDate
 A status (FROZEN, ACTIVE)
 
-**StudentChecking
+**StudentChecking**
 
 
 Student Checking Accounts are identical to Checking Accounts except that they do NOT have:
@@ -52,9 +52,9 @@ A creditLimit
 An interestRate
 A penaltyFee
 
-*The system must have 3 types of Users: Admins and AccountHolders.
+*The system must have 3 types of Users: Admins and AccountHolders.*
 
-**AccountHolders
+**AccountHolders**
 
 
 The AccountHolders should be able to access their own accounts and only their accounts when passing the correct credentials using Basic Auth. AccountHolders have:
@@ -64,13 +64,13 @@ Date of birth
 A primaryAddress (which should be a separate address class)
 An optional mailingAddress
 
-**Admins
+**Admins**
 
 
 Admins only have a name
 
 
-**ThirdParty
+**ThirdParty**
 
 
 The ThirdParty Accounts have a hashed key and a name.
