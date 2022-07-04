@@ -2,7 +2,7 @@ package com.ironhack.midterm_proyect.model.account;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ironhack.midterm_proyect.enums.AccountType;
-import com.ironhack.midterm_proyect.model.user.User;
+import com.ironhack.midterm_proyect.model.user.AccountHolder;
 import com.ironhack.midterm_proyect.classes.Money;
 
 import javax.persistence.*;
@@ -13,11 +13,14 @@ import java.math.RoundingMode;
 @Table(name = "accounts")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Account {
+
     @Id
+    @Column(name = "account_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String accountNumber;
+    @Column(name = "account_number")
+    private int accountNumber;
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "amount", column = @Column(name = "balance")),
@@ -31,11 +34,11 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "primary_owner_id")
     @JsonBackReference
-    private User primaryOwner;
+    private AccountHolder primaryOwner;
     @ManyToOne
     @JoinColumn(name = "secondary_owner_id")
     @JsonBackReference
-    private User secondaryOwner;
+    private AccountHolder secondaryOwner;
     @Column(name = "account_type", nullable = false)
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
@@ -43,12 +46,20 @@ public class Account {
     public Account() {
     }
 
-    public Account(String accountNumber, Money balance, User primaryOwner, User secondaryOwner, AccountType accountType) {
+    public Account(int accountNumber, Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, AccountType accountType) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.primaryOwner = primaryOwner;
         this.secondaryOwner = secondaryOwner;
         this.accountType = accountType;
+    }
+
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(int accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public Long getId() {
@@ -59,13 +70,6 @@ public class Account {
         this.id = id;
     }
 
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
 
     public Money getBalance() {
         return balance;
@@ -79,19 +83,19 @@ public class Account {
         return PENALTYFEE;
     }
 
-    public User getPrimaryOwner() {
+    public AccountHolder getPrimaryOwner() {
         return primaryOwner;
     }
 
-    public void setPrimaryOwner(User primaryOwner) {
+    public void setPrimaryOwner(AccountHolder primaryOwner) {
         this.primaryOwner = primaryOwner;
     }
 
-    public User getSecondaryOwner() {
+    public AccountHolder getSecondaryOwner() {
         return secondaryOwner;
     }
 
-    public void setSecondaryOwner(User secondaryOwner) {
+    public void setSecondaryOwner(AccountHolder secondaryOwner) {
         this.secondaryOwner = secondaryOwner;
     }
 

@@ -10,10 +10,10 @@ import java.time.LocalDate;
 @Table(name = "account_holder")
 public class AccountHolder extends User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "id", unique = true, nullable = false)
+//    private Long id;
 
     @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
@@ -33,23 +33,12 @@ public class AccountHolder extends User{
     public AccountHolder() {
     }
 
-    public AccountHolder(String username, String password, Role role, Long id, LocalDate dateOfBirth, Adress address,
-                         String mailingAddress) {
-        super(username, password, role);
-        this.id = id;
+
+    public AccountHolder(String username, String password, LocalDate dateOfBirth, Adress address, String mailingAddress) {
+        super(username, password, Role.ACCOUNTHOLDER);
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.mailingAddress = mailingAddress;
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public LocalDate getDateOfBirth() {

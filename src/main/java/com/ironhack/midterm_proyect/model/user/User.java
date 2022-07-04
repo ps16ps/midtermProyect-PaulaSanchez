@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    @Column(name = "user_id", unique = true, nullable = false)
     private Long id;
     @Column(name = "username", nullable = false, unique = true)
     private String username;
@@ -59,5 +59,10 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+
+    public Object getPasswordDate() {
+        return getPasswordDate();
     }
 }

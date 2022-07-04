@@ -1,36 +1,27 @@
 package com.ironhack.midterm_proyect.model.user;
 
+import com.ironhack.midterm_proyect.enums.Role;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
+@PrimaryKeyJoinColumn(name = "user_id")
 @Table(name = "third_party")
-public class ThirdParty{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
+public class ThirdParty extends User{
     @Column(name = "name", nullable = false)
     private String name;
     @NotEmpty
     @Column(name = "hashed_key", nullable = false)
     private String hashedKey;
 
-
     public ThirdParty() {
     }
 
-    public ThirdParty(String name, String hashedKey) {
+    public ThirdParty(String username, String password, Role role, String name, String hashedKey) {
+        super(username, password, role);
         this.name = name;
         this.hashedKey = hashedKey;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

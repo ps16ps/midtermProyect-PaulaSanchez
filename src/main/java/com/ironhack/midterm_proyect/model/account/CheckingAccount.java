@@ -1,8 +1,8 @@
 package com.ironhack.midterm_proyect.model.account;
 
-import com.ironhack.midterm_proyect.enums.Status;
 import com.ironhack.midterm_proyect.enums.AccountType;
-import com.ironhack.midterm_proyect.model.user.User;
+import com.ironhack.midterm_proyect.enums.Status;
+import com.ironhack.midterm_proyect.model.user.AccountHolder;
 import com.ironhack.midterm_proyect.classes.Money;
 
 import javax.persistence.*;
@@ -14,9 +14,6 @@ import java.time.LocalDate;
 @PrimaryKeyJoinColumn(name = "account_id")
 @Table(name = "checking_account")
 public class CheckingAccount extends Account{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @Column(name = "secret_key", nullable = false)
     private String secretKey;
     @Column(name = "minimum_balance")
@@ -32,22 +29,12 @@ public class CheckingAccount extends Account{
     public CheckingAccount() {
     }
 
-    public CheckingAccount(String accountNumber, Money balance, User primaryOwner, User secondaryOwner,
-                           AccountType accountType, String secretKey, LocalDate creationDate, Status status) {
-        super(accountNumber, balance, primaryOwner, secondaryOwner, accountType);
+    public CheckingAccount(int accountNumber, Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner,
+                           String secretKey) {
+        super(accountNumber, balance, primaryOwner, secondaryOwner, AccountType.CHECKING);
         this.secretKey = secretKey;
         this.creationDate = creationDate;
         this.status = status;
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getSecretKey() {

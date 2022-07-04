@@ -7,23 +7,13 @@ import javax.persistence.*;
 @Table(name = "admin")
 public class Admin extends User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
+    public Admin(){
+    }
+    @Column(name = "admin_name")
+    private String name;
 
-    public Admin(String username, String password, Role role, Long id) {
+    public Admin(String username, String password, Role role, String name) {
         super(username, password, role);
-        this.id = id;
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
+        this.name = name;
     }
 }
